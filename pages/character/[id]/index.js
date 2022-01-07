@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import Image from 'next/image'
 
 const defaultEndpoint = `https://rickandmortyapi.com/api/character/`;
 
@@ -21,22 +22,21 @@ export default function Character({ data }) {
   let prevCharacter = id - 1;
 
   return (
-    <div className="container">
+    <div className="">
       <Head>
-        <title>{ name }</title>
+        <title>{ name } - Rickandmortypedia</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <h1 className="title">{ name }</h1>
+      <main className="flex flex-col items-center max-w-4xl mx-auto">
+        <h1 className="text-4xl font-bold py-4">{ name }</h1>
 
-        <div className="profile">
+        <div className="flex justify-center gap-4">
           <div className="profile-image">
-            <img src={image} alt={name} />
+            <Image src={image} alt={name} width={300} height={300} />
           </div>
-          <div className="profile-details">
-            <h2>Character Details</h2>
-            <ul>
+          <div className="flex items-center">
+            <ul className='flex flex-col'>
               <li>
                 <strong>Name:</strong> { name }
               </li>
@@ -59,6 +59,7 @@ export default function Character({ data }) {
           </div>
         </div>
 
+      <div className="w-full flex justify-between">
         <p className="prev">
           <Link href={`/character/${prevCharacter}`}>
             <a>
@@ -74,8 +75,10 @@ export default function Character({ data }) {
             </a>
           </Link>
         </p>
+        </div>
 
-        <p className="back">
+
+        <p className="py-8 text-xl">
           <Link href="/">
             <a>
               Back to All Characters

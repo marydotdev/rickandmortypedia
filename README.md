@@ -1,3 +1,7 @@
+# Rickandmortypedia
+
+Credit to [Colby Fayock](https://twitter.com/colbyfayock) for this awesome [Rick and Morty API tutorial](https://youtu.be/iW39Merz0zE)!
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
