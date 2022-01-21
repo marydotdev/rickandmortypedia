@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import Image from 'next/image'
+import Image from 'next/image';
+import Header from '../../../components/Header';
 
 const defaultEndpoint = `https://rickandmortyapi.com/api/character/`;
 
@@ -28,12 +29,32 @@ export default function Character({ data }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex flex-col items-center max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold py-4">{ name }</h1>
+      <Header />
 
-        <div className="flex justify-center gap-4">
+      <main className="flex flex-col items-center max-w-4xl mx-auto">
+      <div className="w-full flex justify-between">
+        <p className="prev">
+          <Link href={`/character/${prevCharacter}`}>
+            <a>
+              Previous
+            </a>
+          </Link>
+        </p>
+
+        <p className="next">
+          <Link href={`/character/${nextCharacter}`}>
+            <a>
+              Next
+            </a>
+          </Link>
+        </p>
+        </div>
+
+        <h1 className="text-4xl font-bold py-8">{ name }</h1>
+
+        <div className="flex justify-center gap-8">
           <div className="profile-image">
-            <Image src={image} alt={name} width={300} height={300} />
+            <Image src={image} alt={name} width={300} height={300} className='rounded-xl' />
           </div>
           <div className="flex items-center">
             <ul className='flex flex-col'>
@@ -58,25 +79,6 @@ export default function Character({ data }) {
             </ul>
           </div>
         </div>
-
-      <div className="w-full flex justify-between">
-        <p className="prev">
-          <Link href={`/character/${prevCharacter}`}>
-            <a>
-              Previous
-            </a>
-          </Link>
-        </p>
-
-        <p className="next">
-          <Link href={`/character/${nextCharacter}`}>
-            <a>
-              Next
-            </a>
-          </Link>
-        </p>
-        </div>
-
 
         <p className="py-8 text-xl">
           <Link href="/">
