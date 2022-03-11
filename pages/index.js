@@ -96,7 +96,7 @@ return (
   <div className="">
     <Head>
       <title>Rickandmortypedia</title>
-      <meta name="description" content="Rickandmortypedia - a Rick and Morty fan project" />
+      <meta name="description" content="Like if Rick and Morty and Wikipedia had a baby" />
       <link rel="icon" href="/favicon.ico" />
     </Head>
     
@@ -105,7 +105,7 @@ return (
     <Hero />
 
     <main className="flex flex-col items-center max-w-6xl mx-auto">
-      <form className="relative flex justify-center mb-8" onSubmit={handleOnSubmitSearch}>
+      <form className="relative flex justify-center mt-8 mb-12" onSubmit={handleOnSubmitSearch}>
         <input
           aria-label="Search characters" 
           name="query" 
@@ -129,19 +129,32 @@ return (
           </svg>
       </form>
 
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+    <div className="space-y-4 sm:grid sm:grid-cols-2 sm:gap-6 sm:space-y-0 lg:grid-cols-3 lg:gap-8">
     {results.map(result => {
       const { id, name, image, species } = result;
 
       return (
-        <div key={id} className="hover:transform hover:scale-105 transition ease-out duration-300">
-          <Link href="/character/[id]" as={`/character/${id}`}>
+        <div key={id} className="relative hover:transform hover:scale-[1.03] transition ease-out duration-100">
+          <div className='card absolute -inset-1.5 bg-green-400 rounded-lg blur opacity-75'>
+
+          </div>
+        <div key={id} className="relative py-4 card bg-slate-900/90 text-center ">
+          <Link href="/character/[id]" as={`/character/${id}`} className="space-y-6">
             <a>
-              <Image src={image} alt={name} width={200} height={200} className='rounded-xl' />
-              <h2>{name} &rarr;</h2>
-              <p>{species}</p>
+              <div className='py-8'>
+                <div className="mx-auto h-40 w-40 border-2 rounded-sm border-slate-900">
+              <Image src={image} alt={name} width={200} height={200} />
+              </div>
+              </div>
+                <div className="space-y-2">
+                  <div className="font-medium text-lg leading-6 space-y-1 px-2 py-4">
+                    <h2 className='text-xl font-bold'>{name}</h2>
+                    <p>{species}</p>
+                  </div>
+                </div>
             </a>
           </Link>
+        </div>
         </div>
             )
     })}  
