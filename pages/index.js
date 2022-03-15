@@ -1,8 +1,7 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link';
 import { useState, useEffect } from 'react'
-import Header from '../components/Header';
+import Tilt from 'react-parallax-tilt';
+import Card from '../components/Card';
 import Hero from '../components/Hero';
 
 const defaultEndpoint = 'https://rickandmortyapi.com/api/character/';
@@ -29,14 +28,8 @@ export default function Directory({ data }) {
   const { current } = page;
 
   useEffect(() => {
-    // Don't bother making a request if it's the default endpoint as we
-    // received that on the server
 
     if ( current === defaultEndpoint ) return;
-
-    // In order to use async/await, we need an async function, and you can't
-    // make the `useEffect` function itself async, so we can create a new
-    // function inside to do just that
 
     async function request() {
       const res = await fetch(current)
@@ -47,15 +40,10 @@ export default function Directory({ data }) {
         ...nextData.info
       });
 
-      // If we don't have `prev` value, that means that we're on our "first page"
-      // of results, so we want to replace the results and start fresh
-
       if ( !nextData.info?.prev ) {
         updateResults(nextData.results);
         return;
       }
-
-      // Otherwise we want to append our results
 
       updateResults(prev => {
         return [
@@ -93,18 +81,17 @@ export default function Directory({ data }) {
   }
 
 return (
-  <div className="">
+  <>
     <Head>
       <title>Rickandmortypedia</title>
       <meta name="description" content="Like if Rick and Morty and Wikipedia had a baby" />
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    
-    <Header />
-
-    <Hero />
 
     <main className="flex flex-col items-center max-w-6xl mx-auto">
+      <Hero />
+
+      {/* Search Bar */}
       <form className="relative flex justify-center mt-8 mb-12" onSubmit={handleOnSubmitSearch}>
         <input
           aria-label="Search characters" 
@@ -128,41 +115,23 @@ return (
               />
           </svg>
       </form>
+      {/* Character Grid */}
+      <div className="space-y-4 sm:grid sm:grid-cols-2 sm:gap-6 sm:space-y-0 lg:grid-cols-3 lg:gap-8">
+        {results.map(result => {
+        const { id, name, image, species } = result;
 
-    <div className="space-y-4 sm:grid sm:grid-cols-2 sm:gap-6 sm:space-y-0 lg:grid-cols-3 lg:gap-8">
-    {results.map(result => {
-      const { id, name, image, species } = result;
-
-      return (
-        <div key={id} className="relative hover:transform hover:scale-[1.03] transition ease-out duration-100">
-          <div className='card absolute -inset-1.5 bg-green-400 rounded-lg blur opacity-75'>
-
-          </div>
-        <div key={id} className="relative py-4 card bg-slate-900/90 text-center ">
-          <Link href="/character/[id]" as={`/character/${id}`} className="space-y-6">
-            <a>
-              <div className='py-8'>
-                <div className="mx-auto h-40 w-40 border-2 rounded-sm border-slate-900">
-              <Image src={image} alt={name} width={200} height={200} />
-              </div>
-              </div>
-                <div className="space-y-2">
-                  <div className="font-medium text-lg leading-6 space-y-1 px-2 py-4">
-                    <h2 className='text-xl font-bold'>{name}</h2>
-                    <p>{species}</p>
-                  </div>
-                </div>
-            </a>
-          </Link>
-        </div>
-        </div>
+        return (
+          // eslint-disable-next-line react/jsx-key
+          <Tilt glareEnable={true} glareMaxOpacity={0.8} glareColor="#ffffff" glarePosition="bottom" glareBorderRadius="20px">
+            <Card {...result} />
+          </Tilt>
             )
-    })}  
-    </div>
-
-    <button onClick={handleLoadMore} className='px-4 py-2 m-8 border-2 rounded-xl bg-white text-black hover:transform hover:scale-105 transition ease-out duration-300'>Load more</button>
-
-  </main>
-</div>
+          })}  
+      </div>
+      
+      {/* Load More Characters */}
+      <button onClick={handleLoadMore} className='px-4 py-2 m-8 border-2 rounded-xl bg-white text-black hover:transform hover:scale-105 transition ease-out duration-300'>Load more</button>
+    </main>
+  </>
   )
 }

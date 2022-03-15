@@ -8,6 +8,7 @@ body {
   background-color: #0f172a;
   color: #f1f5f9;
   font-family: "Fira Mono", monospace;
+  background-image: url("/images/stardust.png");
 }
 
 .clip {
@@ -24,5 +25,21 @@ body {
     90% 100%,
     20% 100%,
     0 80%
+  );
+}
+
+.clip-card {
+  clip-path: polygon(
+    0 0,
+    25% 0,
+    30% 10%,
+    60% 10%,
+    65% 0,
+    90% 0,
+    100% 15%,
+    100% 85%,
+    90% 100%,
+    10% 100%,
+    0 85%
   );
 }

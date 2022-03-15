@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
-import Header from '../../../components/Header';
 
 const defaultEndpoint = `https://rickandmortyapi.com/api/character/`;
 
@@ -29,7 +28,6 @@ export default function Character({ data }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header />
 
       <main className="flex flex-col items-center max-w-4xl mx-auto">
       <div className="w-full flex justify-between">
@@ -50,11 +48,9 @@ export default function Character({ data }) {
         </p>
         </div>
 
-        <h1 className="text-4xl font-bold py-8">{ name }</h1>
-
-        <div className="flex justify-center gap-8">
+        <div className="flex justify-center gap-8 border-2 border-yellow-400">
           <div className="profile-image">
-            <Image src={image} alt={name} width={300} height={300} className='rounded-xl' />
+            <Image src={image} alt={name} width={300} height={300} className='rounded-sm' />
           </div>
           <div className="flex items-center">
             <ul className='flex flex-col'>
