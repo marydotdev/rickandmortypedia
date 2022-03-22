@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import { useState, useEffect } from 'react'
-import Tilt from 'react-parallax-tilt';
 import Card from '../components/Card';
 import Hero from '../components/Hero';
 
@@ -121,10 +120,7 @@ return (
         const { id, name, image, species } = result;
 
         return (
-          // eslint-disable-next-line react/jsx-key
-          <Tilt glareEnable={true} glareMaxOpacity={0.8} glareColor="#ffffff" glarePosition="bottom" glareBorderRadius="20px">
-            <Card {...result} />
-          </Tilt>
+            <Card key={id} {...result} />
             )
           })}  
       </div>

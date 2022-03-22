@@ -1,12 +1,18 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import Tilt from 'react-parallax-tilt';
 
 export default function Card({ id, name, image, species }) {
     return (
-        <div className="relative hover:transform hover:scale-[1.03] transition ease-out duration-100">
+        <Link href="/character/[id]" as={`/character/${id}`}>
+        <a>
+        <Tilt glareEnable={true} glareMaxOpacity={0.8} glareColor="#ffffff" glarePosition="bottom" glareBorderRadius="20px">
+            <div className="relative">
             {/* background glow */}
             <div className='absolute -inset-0.5 bg-gradient-to-br from-lime-300 to-cyan-500 blur' />
+            
             {/* card start */}
+            
             <div key={id} className="relative bg-gradient-to-br from-slate-800 to-slate-900 flex flex-col items-center px-4 py-8 rounded-xl">
                 <div className='relative flex flex-col w-full'>
                     <Image src='/images/portal.png' alt ="portal" width={302} height={313} className="" />
@@ -22,7 +28,7 @@ export default function Card({ id, name, image, species }) {
                                 </div>
                             </a>
                         </Link>
-                        </div>
+                    </div>
                 </div>
                 <div className='flex flex-col w-full'>
                     <div className="font-medium text-lg leading-6 space-y-1 px-2 py-4">
@@ -32,4 +38,7 @@ export default function Card({ id, name, image, species }) {
                 </div>
             </div>
         </div>
+        </Tilt>
+        </a>
+        </Link>
     )}

@@ -29,30 +29,12 @@ export default function Character({ data }) {
       </Head>
 
 
-      <main className="flex flex-col items-center max-w-4xl mx-auto">
-      <div className="w-full flex justify-between">
-        <p className="prev">
-          <Link href={`/character/${prevCharacter}`}>
-            <a>
-              Previous
-            </a>
-          </Link>
-        </p>
-
-        <p className="next">
-          <Link href={`/character/${nextCharacter}`}>
-            <a>
-              Next
-            </a>
-          </Link>
-        </p>
-        </div>
-
-        <div className="flex justify-center gap-8 border-2 border-yellow-400">
-          <div className="profile-image">
-            <Image src={image} alt={name} width={300} height={300} className='rounded-sm' />
+      <main className="max-w-6xl mx-auto">
+        <div className="flex flex-col md:flex-row justify-center border-2 border-yellow-400">
+          <div className="profile-image border-2 border-blue-400">
+            <Image src={image} alt={name} width={300} height={300} className='' />
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center border-2 border-red-500">
             <ul className='flex flex-col'>
               <li>
                 <strong>Name:</strong> { name }
@@ -83,8 +65,25 @@ export default function Character({ data }) {
             </a>
           </Link>
         </p>
-      </main>
 
+        {/* <div className="w-full flex justify-between">
+        <p className="prev">
+          <Link href={`/character/${prevCharacter}`}>
+            <a>
+              Previous
+            </a>
+          </Link>
+        </p>
+
+        <p className="next">
+          <Link href={`/character/${nextCharacter}`}>
+            <a>
+              Next
+            </a>
+          </Link>
+        </p>
+        </div> */}
+      </main>
     </div>
   )
 }

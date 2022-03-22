@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function Header() {
     return (
-        <div className="max-w-7xl mx-auto pt-8 pb-4 px-2 sm:px-4 lg:px-8">
+        <div className="max-w-7xl mx-auto py-8 px-2 sm:px-4 lg:px-8">
             <div className="w-full flex justify-between items-center">
                 <Link href="/">
                     <a>
